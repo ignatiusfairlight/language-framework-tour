@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - db
+
+  laravel:
+    build: ./backend/laravel
+    ports:
+      - "8001:8001"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: blog
+      DB_USERNAME: postgres
+      DB_PASSWORD: secret
+    depends_on:
+      - db
+    profiles: ["laravel"]
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: blog
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
