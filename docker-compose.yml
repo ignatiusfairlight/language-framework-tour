@@ -19,6 +19,8 @@ services:
     depends_on:
       - db
     profiles: ["laravel"]
+    volumes:
+      - ./backend/laravel:/app
 
   db:
     image: postgres:17-alpine
