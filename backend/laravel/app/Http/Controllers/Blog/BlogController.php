@@ -16,7 +16,7 @@ class BlogController extends APIController
     // Fetch one blog
     public function show()
     {
-
+        $id = $req
     }
 
     // Create one blog
