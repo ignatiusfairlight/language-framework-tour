@@ -25,19 +25,23 @@ class BlogController extends APIController
         return $this->success($this->blogService->show($id));
     }
 
-    // Create one blog
-    public function store()
+    public function store(Request $request)
     {
+        $input = [];
 
+        $input = [
+            'title'=>$request->title,
+            'content'=>$request->content
+        ];
+
+        return $this->success(data: $this->blogService->store($input), code: 201);
     }
     
-    // Edit blog
     public function update()
     {
 
     }
 
-    // Delete blog
     public function destroy()
     {
 

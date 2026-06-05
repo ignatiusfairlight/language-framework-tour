@@ -16,14 +16,12 @@ class BlogService
         return Post::where('id', $id)->first();
     }
 
-    public function store(string $title, string $content)
+    public function store(array $input)
     {
-        $post = Post::create([
-            'title' => $title,
-            'content' => $content
+        return Post::create([
+            'title' => $input['title'],
+            'content' => $input['content']
         ]);
-
-        return "Post created!";
     }
 
     public function update()
