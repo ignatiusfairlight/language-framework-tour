@@ -11,4 +11,4 @@ To become language agnostic, I decided to spend my holidays doing one simple cod
 
 | Language | Framework | Status |
 | -------- | --------- | ------ |
-| PHP | Laravel | ✅ |
+| PHP      | Laravel   |   ✅   |
