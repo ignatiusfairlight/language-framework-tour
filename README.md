@@ -24,7 +24,7 @@ Here is the list of frameworks I'm going to try out in this tour.
 | ---------- | --------------| :----: |
 | PHP        | Laravel       |   ✅   |
 | GO         | Gin           |   ❌   |
-| C#         | ASP.NET       |   ❌   |
+| C#         | ASP.NET Core  |   ❌   |
 | Rust       | Axum          |   ❌   |
 | Java       | Spring        |   ❌   |
 | Ruby       | Ruby on Rails |   ❌   |
@@ -35,7 +35,7 @@ Here is the list of frameworks I'm going to try out in this tour.
 
 ## Post Mortem
 
-For each framework I 'visited', will write a post mortem where I share my thoughts on it, as well as I what I have learned, what I could have done better and decisions I've made when doing the project on the framework.
+For each framework I 'visited', I will write a post mortem where I share my thoughts on it, as well as I what I have learned, what I could have done better and decisions I've made when doing the project on the framework.
 
-Laravel -> [PostMortem.md](backend/laravel/PostMortem.md)
+[Laravel-PostMortem.md](backend/laravel/Laravel-PostMortem.md)
 
