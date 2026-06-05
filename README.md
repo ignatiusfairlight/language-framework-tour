@@ -6,3 +6,9 @@ To become language agnostic, I decided to spend my holidays doing one simple cod
 
 ## (A Very Simplified) Overall System Design
 ![alt text](Language+Framework_Tour.png)
+
+## Current Progress
+
+| Language | Framework | Status |
+| -------- | --------- | ------ |
+| PHP | Laravel | ✅ |
