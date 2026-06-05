@@ -9,6 +9,15 @@ To become language agnostic, I decided to spend my holidays doing one simple cod
 
 ## Current Progress
 
-| Language | Framework | Status |
-| -------- | --------- | ------ |
-| PHP      | Laravel   |   ✅   |
+| Language   | Framework     | Status |
+| ---------- | --------------| :----: |
+| PHP        | Laravel       |   ✅   |
+| GO         | Gin           |   ❌   |
+| C#         | ASP.NET       |   ❌   |
+| Rust       | Axum          |   ❌   |
+| Java       | Spring        |   ❌   |
+| Ruby       | Ruby on Rails |   ❌   |
+| Python     | FastAPI       |   ❌   |   
+| Python     | Django        |   ❌   |
+| Typescript | ExpressJS     |   ❌   |
+| Typescript | HonoJS        |   ❌   |
