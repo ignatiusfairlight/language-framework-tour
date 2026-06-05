@@ -29,8 +29,14 @@ class BlogService
 
     }
 
-    public function destroy()
+    public function destroy(int $id)
     {
+        $post = Post::find($id);
 
+        if ($post == null) {
+            return null;
+        } else {
+            return $post->delete();
+        }
     }
 }

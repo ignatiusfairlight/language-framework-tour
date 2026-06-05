@@ -34,7 +34,10 @@ class BlogController extends APIController
             'content'=>$request->content
         ];
 
-        return $this->success(data: $this->blogService->store($input), code: 201);
+        return $this->success(
+            data: $this->blogService->store($input),
+            code: 201
+        );
     }
     
     public function update()
@@ -42,8 +45,19 @@ class BlogController extends APIController
 
     }
 
-    public function destroy()
+    public function destroy(int $id)
     {
+        $result = $this->blogService->destroy($id);
 
+        if ($result == null) {
+            return $this->fail(
+                message: "Post not found",
+                code: 404,
+            );
+        } else {
+            return $this->success(
+                code: 204
+            );
+        }
     }
 }
