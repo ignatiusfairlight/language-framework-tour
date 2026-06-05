@@ -24,9 +24,18 @@ class BlogService
         ]);
     }
 
-    public function update()
+    public function update(array $input, int $id)
     {
+        $post = Post::find($id);
 
+        if ($post == null) {
+            return null;
+        } else {
+            $post->update($input);
+            return $post;
+        }
+
+        
     }
 
     public function destroy(int $id)

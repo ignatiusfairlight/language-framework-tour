@@ -30,8 +30,8 @@ class BlogController extends APIController
         $input = [];
 
         $input = [
-            'title'=>$request->title,
-            'content'=>$request->content
+            'title' => $request->title,
+            'content' => $request->content
         ];
 
         return $this->success(
@@ -39,10 +39,26 @@ class BlogController extends APIController
             code: 201
         );
     }
-    
-    public function update()
-    {
 
+    public function update(Request $request, int $id)
+    {
+        $input = [];
+
+        $input = [
+            'title' => $request->title,
+            'content' => $request->content
+        ];
+
+        $result = $this->blogService->update(array_filter($input), $id);
+
+        if ($result == null) {
+            return $this->fail(
+                message: "Post not found",
+                code: 404,
+            );
+        } else {
+            return $this->success($result);
+        }
     }
 
     public function destroy(int $id)
