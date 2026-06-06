@@ -9,6 +9,10 @@ class ApiResponseMiddleware:
         response = self.get_response(request)
 
         if request.path.startswith('/api'):
+            content_type = response.get('Content-Type', '')
+            if 'application/json' not in content_type:
+                return response
+                
             result = json.loads(response.content)
             wrapped = {
                 'success' : True if response.status_code == 200 else False,
