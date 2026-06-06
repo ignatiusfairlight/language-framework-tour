@@ -8,9 +8,8 @@ def get_post(id):
     result = Post.objects.filter(id=id).values().first()
     return result
 
-def create_post():
-    post = Post(title="")
-    post.save()
+def create_post(data):
+    return Post.objects.create(**data)
 
 # def update_post():
 
