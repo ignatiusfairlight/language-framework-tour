@@ -29,7 +29,7 @@ Here is the list of frameworks I'm going to try out in this tour.
 | Java       | Spring        |   ❌   |
 | Ruby       | Ruby on Rails |   ❌   |
 | Python     | FastAPI       |   ❌   |   
-| Python     | Django        |   ❌   |
+| Python     | Django        |   ✅   |
 | Typescript | ExpressJS     |   ❌   |
 | Typescript | HonoJS        |   ❌   |
 
