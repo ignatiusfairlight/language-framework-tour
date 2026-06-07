@@ -14,7 +14,7 @@ For the frontend, I'm going to use Svelte since it's the only frontend framework
 
 ## LLM Usage Disclaimer
 
-I admit that I use LLM in this project. I use it as a very powerful search engine since we all know LLMs are trained on data (with questionable methods on how the data was obtained), and even still, I would force the LLM to cite the source of its finding rather than blindly trusting it. One thing I noticed in the process of this project is I'm getting better at reading documentations. With this project (and other subsequent fun projects that I will be doing), I will be able to be independent of LLMs and have a powerful ability of seeking information myself (or at least make a better AGENTS.md so that Claude would verify every of its output rather than excitedly tell me its explanation like an overconfident intern).
+I admit that I use LLM in this project. I use it as a very powerful search engine since we all know LLMs are trained on massive amounts of data (with questionable methods on how the data was obtained), and even still, I would force the LLM to cite the source of its finding rather than blindly trusting it. One thing I noticed in the process of this project is I'm getting better at reading documentations. With this project (and other subsequent fun projects that I will be doing), I hope that I will be able to be independent of LLMs and have a powerful ability of seeking information myself (or at least make a better AGENTS.md so that Claude would verify every of its output rather than excitedly tell me its explanation like an overconfident intern).
 
 ## Current Progress
 
@@ -33,9 +33,12 @@ Here is the list of frameworks I'm going to try out in this tour.
 | Typescript | ExpressJS     |   ❌   |
 | Typescript | HonoJS        |   ❌   |
 
+Also, I haven't made the frontend part of this project yet. As of now, the API made in this project are tested using Postman. I'm bad when it comes to anything involving creative thinking so until I come up with a blog site design that I'm happy with, I will continue testing endpoints in the project using Postman.
+
 ## Post Mortem
 
 For each framework I 'visited', I will write a post mortem where I share my thoughts on it, as well as I what I have learned, what I could have done better and decisions I've made when doing the project on the framework.
 
 [Laravel-PostMortem.md](backend/laravel/Laravel-PostMortem.md)
+[Django-PostMortem.md](backend/django/Django-PostMortem.md)
 
