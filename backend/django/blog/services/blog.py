@@ -13,4 +13,5 @@ def create_post(data):
 
 # def update_post():
 
-# def delete_post():
+def delete_post(id):
+    return Post.objects.filter(id=id).delete()

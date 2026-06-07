@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from blog.serializers.blog import PostSerializer
-from blog.services.blog import get_posts, get_post, create_post
+from blog.services.blog import get_posts, get_post, create_post, delete_post
 
 @api_view(['GET', 'POST'])
 def posts(request):
@@ -23,4 +23,5 @@ def post_details(request, id):
     elif request.method == 'PATCH':
         return Response({'message': 'I like doggos too'})
     elif request.method == 'DELETE':
-        return Response({'message': 'But I like rabbits more.'})
+        delete_post(id)
+        return Response()
