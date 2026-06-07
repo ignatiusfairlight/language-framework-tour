@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from blog.serializers.blog import PostSerializer
-from blog.services.blog import get_posts, get_post, create_post, delete_post
+from blog.serializers.blog import CreatePostSerializer, EditPostSerializer
+from blog.services.blog import get_posts, get_post, create_post, update_post, delete_post
 
 @api_view(['GET', 'POST'])
 def posts(request):
@@ -9,7 +9,7 @@ def posts(request):
         result = get_posts()
         return Response(result)
     elif request.method == 'POST':
-        serializer = PostSerializer(data=request.data)
+        serializer = CreatePostSerializer(data=request.data)
         if serializer.is_valid():
             create_post(serializer.validated_data)
             return Response()
@@ -21,7 +21,11 @@ def post_details(request, id):
         result = get_post(id)
         return Response(result)
     elif request.method == 'PATCH':
-        return Response({'message': 'I like doggos too'})
+        serializer = EditPostSerializer(data=request.data)
+        if serializer.is_valid():
+            update_post(id, serializer.validated_data)
+            return Response()
+        return Response(serializer.errors, status=400)
     elif request.method == 'DELETE':
         delete_post(id)
         return Response()

@@ -11,7 +11,8 @@ def get_post(id):
 def create_post(data):
     return Post.objects.create(**data)
 
-# def update_post():
+def update_post(id, data):
+    return Post.objects.filter(id=id).update(**data)
 
 def delete_post(id):
     return Post.objects.filter(id=id).delete()
