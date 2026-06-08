@@ -39,6 +39,6 @@ Also, I haven't made the frontend part of this project yet. As of now, the API m
 
 For each framework I 'visited', I will write a post mortem where I share my thoughts on it, as well as I what I have learned, what I could have done better and decisions I've made when doing the project on the framework.
 
-[Laravel-PostMortem.md](backend/laravel/Laravel-PostMortem.md)
-[Django-PostMortem.md](backend/django/Django-PostMortem.md)
+1. [Laravel-PostMortem.md](backend/laravel/Laravel-PostMortem.md)
+2. [Django-PostMortem.md](backend/django/Django-PostMortem.md)
 
