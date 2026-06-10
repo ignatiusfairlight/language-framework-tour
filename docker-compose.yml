@@ -55,8 +55,6 @@ services:
       db:
         condition: service_healthy
     profiles: ["gin"]
-    volumes:
-      - ./backend/gin:/app
 
   db:
     image: postgres:17-alpine
