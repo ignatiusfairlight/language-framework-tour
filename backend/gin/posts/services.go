@@ -18,7 +18,10 @@ func GetPostBySlug(condition interface{}) (PostModel, error) {
 	return posts, err
 }
 
-// func CreatePost
+func CreatePost(post *PostModel) error {
+	db := common.GetDB()
+	return db.Create(post).Error
+} 
 
 // func UpdatePost
 

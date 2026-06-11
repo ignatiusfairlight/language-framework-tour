@@ -37,10 +37,22 @@ func PostShow(c *gin.Context) {
 }
 
 func PostCreate(c *gin.Context) {
-	c.JSON(http.StatusCreated, gin.H{
-		// Call PostCreateService here
-		"message": "I will make you something!",
-	})
+	validator := PostModelValidator{}
+	if err := validator.Bind(c); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	input := PostModel{
+		Title: validator.Title,
+		Content: validator.Content,
+	}
+	if err := CreatePost(&input); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not create post"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, input)
 }
 
 func PostUpdate(c *gin.Context) {
