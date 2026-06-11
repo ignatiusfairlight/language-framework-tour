@@ -24,5 +24,11 @@ func InitDB() *gorm.DB {
 		panic(err)
 	}
 
-	return db
+	DB = db
+
+	return DB
+}
+
+func GetDB() *gorm.DB {
+	return DB
 }

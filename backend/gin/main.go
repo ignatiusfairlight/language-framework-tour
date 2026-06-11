@@ -7,14 +7,17 @@ import (
 	"github.com/ignatiusfairlight/language-framework-tour/backend/gin/common"
 	"github.com/ignatiusfairlight/language-framework-tour/backend/gin/posts"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-// func Migrate(db *gorm.DB) {}
+func Migrate(db *gorm.DB) {
+	db.AutoMigrate(&posts.PostModel{})
+}
 
 func main() {
 
 	db := common.InitDB()
-	// Migrate(db)
+	Migrate(db)
 	sqlDB, err := db.DB()
 	if err != nil {
 		log.Println("Failed to get to sqlDBQL:", err)
