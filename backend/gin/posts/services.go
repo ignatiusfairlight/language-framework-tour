@@ -25,4 +25,11 @@ func CreatePost(post *PostModel) error {
 
 // func UpdatePost
 
-// func DeletePost
+func DeletePost(id uint) (int64, error) {
+	db := common.GetDB()
+	result := db.Delete(&PostModel{}, id)
+	if result.Error != nil {
+		return 0, result.Error
+	}
+	return result.RowsAffected, nil
+}

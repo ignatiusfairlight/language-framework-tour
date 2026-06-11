@@ -28,11 +28,13 @@ func PostShow(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Invalid ID"})
 		return
 	}
+
 	result, err := GetPostBySlug(&PostModel{ID: uint(id)})
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Post not found"})
 		return
 	}
+
 	c.JSON(http.StatusOK, result)
 }
 
@@ -47,6 +49,7 @@ func PostCreate(c *gin.Context) {
 		Title: validator.Title,
 		Content: validator.Content,
 	}
+
 	if err := CreatePost(&input); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not create post"})
 		return
@@ -63,8 +66,23 @@ func PostUpdate(c *gin.Context) {
 }
 
 func PostDestroy(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		// Call PostDestroyService here
-		"message": "I will destroy for you!",
-	})
+	idStr := c.Param("slug")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Invalid ID"})
+		return
+	}
+
+	rows, err := DeletePost(uint(id))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Post could not be deleted"})
+		return
+	}
+
+	if rows == 0 {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Post not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Post deleted"})
 }
