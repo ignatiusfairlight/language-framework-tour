@@ -3,6 +3,7 @@ package posts
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 func PostsRegister(router *gin.RouterGroup) {
@@ -16,15 +17,23 @@ func PostsRegister(router *gin.RouterGroup) {
 }
 
 func PostIndex(c *gin.Context) {
-	posts := GetAllPosts()
-	c.JSON(http.StatusOK, posts)
+	result := GetAllPosts()
+	c.JSON(http.StatusOK, result)
 }
 
 func PostShow(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		// Call PostShowService here
-		"message": "I will show you one thing!",
-	})
+	idStr := c.Param("slug")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Invalid ID"})
+		return
+	}
+	result, err := GetPostBySlug(&PostModel{ID: uint(id)})
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Post not found"})
+		return
+	}
+	c.JSON(http.StatusOK, result)
 }
 
 func PostCreate(c *gin.Context) {

@@ -11,7 +11,12 @@ func GetAllPosts() []PostModel {
 	return posts
 }
 
-// func GetPostBySlug
+func GetPostBySlug(condition interface{}) (PostModel, error) {
+	db := common.GetDB()
+	var posts PostModel
+	err := db.Where(condition).First(&posts).Error
+	return posts, err
+}
 
 // func CreatePost
 

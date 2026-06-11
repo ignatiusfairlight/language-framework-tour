@@ -1,15 +1,15 @@
 package posts
 
 import (
-	"gorm.io/gorm"
+	"time"
 )
 
 type PostModel struct {
-	gorm.Model
-
-	Slug      string   `gorm:"uniqueIndex"`
-	Title     string
-	Content   string
+	ID         uint       `gorm:"primaryKey"`
+	Title      string     `gorm:"column:title"` 
+	Content    string     `gorm:"column:content"`
+	CreatedAt  time.Time 
+	UpdatedAt  time.Time
 }
 
 func (PostModel) TableName() string {
