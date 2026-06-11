@@ -23,13 +23,22 @@ func CreatePost(post *PostModel) error {
 	return db.Create(post).Error
 } 
 
-// func UpdatePost
+func UpdatePost(id uint, data *PostModel) (int64, error) {
+	db := common.GetDB()
+	result := db.Model(&PostModel{ID: id}).Updates(data)
+	if result.Error != nil {
+		return 0, result.Error
+	}
 
+	return result.RowsAffected, nil
+}
+ 
 func DeletePost(id uint) (int64, error) {
 	db := common.GetDB()
 	result := db.Delete(&PostModel{}, id)
 	if result.Error != nil {
 		return 0, result.Error
 	}
+
 	return result.RowsAffected, nil
 }
