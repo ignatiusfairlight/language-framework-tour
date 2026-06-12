@@ -19,7 +19,8 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: secret
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     profiles: ["laravel"]
     volumes:
       - ./backend/laravel:/app
@@ -55,6 +56,21 @@ services:
       db:
         condition: service_healthy
     profiles: ["gin"]
+
+  aspsnet:
+    build: ./backend/asp.net
+    ports:
+      - "8004:8004"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: blog
+      DB_USER: postgres
+      DB_PASSWORD: secret
+    depends_on:
+      db:
+        condition: service_healthy
+    profiles: ["aspnet"]
 
   db:
     image: postgres:17-alpine
