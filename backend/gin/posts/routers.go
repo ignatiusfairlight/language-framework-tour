@@ -39,7 +39,7 @@ func PostShow(c *gin.Context) {
 }
 
 func PostCreate(c *gin.Context) {
-	validator := PostModelValidator{}
+	validator := PostCreateValidator{}
 	if err := validator.Bind(c); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -59,10 +59,36 @@ func PostCreate(c *gin.Context) {
 }
 
 func PostUpdate(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		// Call PostUpdateService here
-		"message": "I will change something for you!",
-	})
+	idStr := c.Param("slug")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Invalid ID"})
+		return
+	}
+
+	validator := PostUpdateValidator{}
+	if err := validator.Bind(c); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	input := PostModel{
+		Title: validator.Title,
+		Content: validator.Content,
+	}
+
+	rows, err := UpdatePost(uint(id), &input)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Post failed to be updated"})
+		return
+	}
+
+	if rows == 0 {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Post not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Post updated!"})
 }
 
 func PostDestroy(c *gin.Context) {

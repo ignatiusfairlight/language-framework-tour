@@ -35,7 +35,7 @@ func UpdatePost(id uint, data *PostModel) (int64, error) {
  
 func DeletePost(id uint) (int64, error) {
 	db := common.GetDB()
-	result := db.Delete(&PostModel{}, id)
+	result := db.Delete(&PostModel{ID: id})
 	if result.Error != nil {
 		return 0, result.Error
 	}
