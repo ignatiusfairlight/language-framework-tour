@@ -57,7 +57,7 @@ services:
         condition: service_healthy
     profiles: ["gin"]
 
-  aspsnet:
+  aspnet:
     build: ./backend/asp.net
     ports:
       - "8004:8004"
