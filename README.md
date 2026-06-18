@@ -24,7 +24,7 @@ Here is the list of frameworks I'm going to try out in this tour.
 | ---------- | --------------| :----: |
 | PHP        | Laravel       |   ✅   |
 | GO         | Gin           |   ✅   |
-| C#         | ASP.NET Core  |   ❌   |
+| C#         | ASP.NET Core  |   ✅   |
 | Rust       | Axum          |   ❌   |
 | Java       | Spring        |   ❌   |
 | Ruby       | Ruby on Rails |   ❌   |

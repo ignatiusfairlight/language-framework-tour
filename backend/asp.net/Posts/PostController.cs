@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using BlogAPI.Services;
+using BlogAPI.Models;
 
 namespace BlogAPI.Controllers;
 
@@ -15,37 +16,40 @@ public class PostController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<string> Index()
+    public async Task<ActionResult<IEnumerable<Post>>> Index()
     {
-        var posts = "Hello world!";
+        var posts = await _postService.GetAll();
         return Ok(posts);
     }
 
     [HttpGet("{id}")]
-    public ActionResult<string> Show(int id)
+    public async Task<ActionResult<Post>> Show(int id)
     {
-        var posts = "I will drink more water.";
-        return Ok(posts);
+        var post = await _postService.GetById(id);
+        if (post == null) return NotFound();
+        return Ok(post);
     }
 
     [HttpPost]
-    public ActionResult<string> Store()
+    public async Task<ActionResult<Post>> Store(Post post)
     {
-        var posts = "Always move forward!";
-        return Ok(posts);           
+        var created = await _postService.Create(post);
+        return CreatedAtAction(nameof(Show), new { id = created.Id }, created);           
     }
 
     [HttpPatch("{id}")]
-    public ActionResult<string> Update()
+    public async Task<ActionResult<Post>> Update(int id, UpdatePost post)
     {
-        var posts = "I like cheese!";
-        return Ok(posts);           
+        var updated = await _postService.Update(id, post);
+        if (updated == null) return NotFound();
+        return Ok(updated);
     }
-
+    
     [HttpDelete("{id}")]
-    public ActionResult<string> Destroy()
+    public async Task<ActionResult<Post>> Destroy(int id)
     {
-        var posts = "Yes King!";
-        return Ok(posts);           
+        var deleted = await _postService.Delete(id);
+        if (!deleted) return NotFound();
+        return NoContent();           
     } 
 }
