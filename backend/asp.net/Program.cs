@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using BlogAPI.Services;
 using BlogAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ var connectionString = $"Host={host};Port={port};Database={name};Username={user}
 
 builder.Services.AddDbContext<PostContext>(opt =>
     opt.UseNpgsql(connectionString));
+builder.Services.AddScoped<PostService>();
 
 var app = builder.Build();
 
