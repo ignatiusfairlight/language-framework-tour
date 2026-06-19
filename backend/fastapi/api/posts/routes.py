@@ -12,16 +12,16 @@ async def show_all(session: SessionDep):
 
 @router.get("/{id}")
 async def show_one(id: int):
-    return {"message": "Hello everynyan!"}
+    return await services.get_by_id()
 
 @router.post("/")
 async def create():
-    return {"message": "How are you?"}
+    return await services.create_post()
 
 @router.patch("/{id}")
 async def update(id: int):
-    return {"message": "Fine, thank you!"}
+    return await services.update_post()
 
 @router.delete("/{id}")
 async def delete(id: int):
-    return {"message": "Oh my gah"}
+    return await services.delete_post()
