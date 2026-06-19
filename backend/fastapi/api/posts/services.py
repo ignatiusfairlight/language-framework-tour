@@ -7,13 +7,13 @@ async def get_all_posts(session: AsyncSession) -> list[Post]:
     return result.all()
 
 async def get_by_id():
-    return await {"message": "Hello everynyan!"}
+    return {"message": "Hello everynyan!"}
 
 async def create_post():
-    return await {"message": "How are you?"}
+    return {"message": "How are you?"}
 
 async def update_post():
-    return await {"message": "Fine, thank you!"}
+    return {"message": "Fine, thank you!"}
 
 async def delete_post():
-    return await {"message": "Oh my gah"}
+    return {"message": "Oh my gah"}
