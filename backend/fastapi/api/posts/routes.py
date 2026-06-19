@@ -1,10 +1,14 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlmodel.ext.asyncio.session import AsyncSession
+from core.database import get_session, SessionDep
+from . import services
+from .schemas import PostRead
 
 router = APIRouter()
 
-@router.get("/")
-async def show_all():
-    return {"message": "Hello world!"}
+@router.get("/", response_model=list[PostRead])
+async def show_all(session: SessionDep):
+    return await services.get_all_posts(session)
 
 @router.get("/{id}")
 async def show_one(id: int):

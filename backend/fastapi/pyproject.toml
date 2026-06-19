@@ -7,4 +7,5 @@ dependencies = [
     "sqlalchemy>=2.0",
     "asyncpg",
     "alembic",
+    "sqlmodel",
 ]
