@@ -72,6 +72,23 @@ services:
         condition: service_healthy
     profiles: ["aspnet"]
 
+  fastapi:
+    build: ./backend/fastapi
+    ports:
+      - "8005:8005"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: blog
+      DB_USER: postgres
+      DB_PASSWORD: secret
+    depends_on:
+      db:
+        condition: service_healthy
+    profiles: ["fastapi"]
+    volumes:
+      - ./backend/fastapi:/app
+
   db:
     image: postgres:17-alpine
     environment:
