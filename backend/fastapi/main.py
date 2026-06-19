@@ -1,14 +1,8 @@
 from fastapi import FastAPI
-from fastapi.exceptions import RequestValidationError
-from starlette.exceptions import HTTPException
-from starlette.middleware.cors import CORSMiddleware
+
+from api import router as api_router
+from core.config import settings
 
 app = FastAPI()
 
-@app.get("/posts")
-async def read_root():
-    return {"message": "Hello world!"}
-
-@app.get("/posts/{id}")
-async def read_item(id: int):
-    return {"id": id, "message": "Are you there?"}
+app.include_router(api_router, prefix=settings.api_prefix)
