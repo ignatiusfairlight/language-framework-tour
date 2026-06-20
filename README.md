@@ -39,13 +39,15 @@ Also, I haven't made the frontend part of this project yet. As of now, the API m
 
 For each framework I 'visited', I will write a post mortem where I share my thoughts on it, as well as I what I have learned, what I could have done better and decisions I've made when doing the project on the framework.
 
-1. [Laravel Post Mortem](backend/laravel/Laravel-PostMortem.md)
-2. [Django Post Mortem](backend/django/Django-PostMortem.md)
-3. [Gin Post Mortem](backend/gin/Gin-PostMortem.md)
-4. [ASP.NET Core Post Mortem](backend/asp.net/dotnet_Core-PostMortem.md)
+| No  | Post Mortem |
+| :-: | ----------- |
+|  1  | [Laravel Post Mortem](backend/laravel/Laravel-PostMortem.md) |
+|  2  | [Django Post Mortem](backend/django/Django-PostMortem.md) |
+|  3  | [Gin Post Mortem](backend/gin/Gin-PostMortem.md) |
+|  4  | [ASP.NET Core Post Mortem](backend/asp.net/dotnet_Core-PostMortem.md) |
+|  5  | [FastAPI Post Mortem](backend/fastapi//FastAPI-PostMortem.md) | 
 <!--
-5. Spring
-6. FastAPI
+6. Spring
 7. Ruby on Rails
 8. Express.js
 9. Axum
