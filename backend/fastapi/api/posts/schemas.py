@@ -7,3 +7,11 @@ class PostRead(SQLModel):
     content: str
     created_at: datetime
     updated_at: datetime
+
+class PostCreate(SQLModel):
+    title: str
+    content: str
+
+class PostEdit(SQLModel):
+    title: str | None = None
+    content: str | None = None
