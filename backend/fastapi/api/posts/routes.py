@@ -1,8 +1,8 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Response, status, HTTPException
 from sqlmodel.ext.asyncio.session import AsyncSession
 from core.database import get_session, SessionDep
 from . import services
-from .schemas import PostRead
+from .schemas import PostRead, PostCreate, PostEdit
 
 router = APIRouter()
 
@@ -10,18 +10,25 @@ router = APIRouter()
 async def show_all(session: SessionDep):
     return await services.get_all_posts(session)
 
-@router.get("/{id}")
-async def show_one(id: int):
-    return await services.get_by_id()
+@router.get("/{id}", response_model=PostRead)
+async def show_one(session: SessionDep, id: int):
+    return await services.get_by_id(session, id)
 
-@router.post("/")
-async def create():
-    return await services.create_post()
+@router.post("/", response_model=PostRead)
+async def create(session: SessionDep, data: PostCreate):
+    return await services.create_post(session, data)
 
-@router.patch("/{id}")
+@router.patch("/{id}", response_model=PostRead)
 async def update(id: int):
     return await services.update_post()
 
-@router.delete("/{id}")
-async def delete(id: int):
-    return await services.delete_post()
+@router.delete(
+    "/{id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+    responses={404: {"description":"Post not found"}}
+)
+async def delete(session: SessionDep, id: int):
+    deleted = await services.delete_post(session, id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Post not found")
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
