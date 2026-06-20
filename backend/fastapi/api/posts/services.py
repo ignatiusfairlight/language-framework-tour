@@ -18,13 +18,21 @@ async def create_post(session: AsyncSession, data: PostCreate):
     await session.refresh(post)
     return post
 
-async def update_post():
-    return {"message": "Fine, thank you!"}
+async def update_post(session: AsyncSession, id: int, data: PostEdit) -> Post | None:
+    result = (await session.exec(select(Post).where(Post.id == id))).first()
+    if result is None:
+        return None
+
+    result.sqlmodel_update(data.model_dump(exclude_unset=True))
+    session.add(result)
+    await session.commit()
+    await session.refresh(result)
+    return result
 
 async def delete_post(session: AsyncSession, id: int):
     result = (await session.exec(select(Post).where(Post.id == id))).first()
     if result is None:
-        return False
+        return None
     await session.delete(result)
     await session.commit()
     return True

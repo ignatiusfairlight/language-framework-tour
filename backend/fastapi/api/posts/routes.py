@@ -18,9 +18,16 @@ async def show_one(session: SessionDep, id: int):
 async def create(session: SessionDep, data: PostCreate):
     return await services.create_post(session, data)
 
-@router.patch("/{id}", response_model=PostRead)
-async def update(id: int):
-    return await services.update_post()
+@router.patch(
+    "/{id}",
+    response_model=PostRead,
+    responses={404: {"description":"Post not found"}}
+)
+async def update(session: SessionDep, id: int, data: PostEdit):
+    post = await services.update_post(session, id, data)
+    if post is None:
+        raise HTTPException(status_code=404, detail="Post not found")
+    return post
 
 @router.delete(
     "/{id}",
