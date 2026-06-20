@@ -28,7 +28,7 @@ Here is the list of frameworks I'm going to try out in this tour.
 | Rust       | Axum          |   ❌   |
 | Java       | Spring        |   ❌   |
 | Ruby       | Ruby on Rails |   ❌   |
-| Python     | FastAPI       |   ❌   |   
+| Python     | FastAPI       |   ✅   |   
 | Python     | Django        |   ✅   |
 | Typescript | ExpressJS     |   ❌   |
 | Typescript | HonoJS        |   ❌   |
