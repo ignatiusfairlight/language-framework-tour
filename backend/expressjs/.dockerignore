@@ -2,3 +2,4 @@ vendor/
 .env
 storage/logs/*
 bootstrap/cache/*
+node_modules
