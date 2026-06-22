@@ -1,5 +1,7 @@
-const getAll = () => {
-  return { "message": "Hello world!" };
+import db from '../common/database';
+
+const getAll = async () => {
+  return await db.any('SELECT * FROM posts');
 };
 
 const getById = () => {

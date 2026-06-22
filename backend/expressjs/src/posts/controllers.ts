@@ -3,8 +3,8 @@ import postService from './services';
 
 const router = Router();
 
-router.get('/posts', (req: Request, res: Response, next: NextFunction) => {
-  const result = postService.getAll();
+router.get('/posts', async (req: Request, res: Response, next: NextFunction) => {
+  const result = await postService.getAll();
   res.json(result);
 });
 
