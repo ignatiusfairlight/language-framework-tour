@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 8006
 
-CMD ["pnpm", "exec", "tsx", "index.ts"]
+CMD ["pnpm", "exec", "tsx", "--watch", "index.ts"]
