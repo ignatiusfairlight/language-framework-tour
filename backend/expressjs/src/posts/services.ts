@@ -4,8 +4,8 @@ const getAll = async () => {
   return await db.any('SELECT * FROM posts');
 };
 
-const getById = () => {
-  return { "message": "Hello everynyan!" };
+const getById = async (id: number) => {
+  return await db.one('SELECT * FROM posts WHERE id = $1', [id]);
 };
 
 const createPost = () => {

@@ -8,9 +8,13 @@ router.get('/posts', async (req: Request, res: Response, next: NextFunction) => 
   res.json(result);
 });
 
-router.get('/posts/:id', (req: Request, res: Response, next: NextFunction) => {
-  const result = postService.getById();
-  res.json(result);
+router.get('/posts/:id', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await postService.getById(Number(req.params.id));
+    res.json(result);
+  } catch(error) {
+    next(error)
+  }
 });
 
 router.post('/posts', (req: Request, res: Response, next: NextFunction) => {
