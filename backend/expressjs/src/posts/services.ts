@@ -14,7 +14,18 @@ const createPost = async (data: CreatePost) => {
 };
 
 const editPost = async (id: number, data: EditPost) => {
-  return await db.one('UPDATE posts SET title = $1, content = $2, updated = NOW() WHERE id = $3 RETURNING *', [data.title, data.content, id]);
+  const fields = [];
+  const values = [];
+  let i = 1;
+
+  if (data.title !== undefined) { fields.push(`title = $${i++}`); values.push(data.title); }
+  if (data.content !== undefined) { fields.push(`content = $${i++}`); values.push(data.content); }
+
+  values.push(id)
+  return await db.one(
+    `UPDATE posts SET ${fields.join(', ')}, updated_at = NOW() WHERE id = $${i} RETURNING *`,
+    values
+  );
 };
 
 const deletePost = async (id: number) => {

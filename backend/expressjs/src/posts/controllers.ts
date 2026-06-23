@@ -18,16 +18,16 @@ router.get('/posts/:id', async (req: Request, res: Response, next: NextFunction)
   }
 });
 
-router.post('/posts', (req: Request, res: Response, next: NextFunction) => {
-  const result = postService.createPost(req.body() as CreatePost);
+router.post('/posts', async (req: Request, res: Response, next: NextFunction) => {
+  const result = await postService.createPost(req.body as CreatePost);
   res.json(result);
 });
 
-router.patch('/posts/:id', (req: Request, res: Response, next: NextFunction) => {
+router.patch('/posts/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = postService.editPost(
+    const result = await postService.editPost(
       Number(req.params.id),
-      req.body() as EditPost
+      req.body as EditPost
     );
     res.json(result);
   } catch (error) {
@@ -35,10 +35,10 @@ router.patch('/posts/:id', (req: Request, res: Response, next: NextFunction) => 
   };
 });
 
-router.delete('/posts/:id', (req: Request, res: Response, next: NextFunction) => {
+router.delete('/posts/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = postService.deletePost(Number(req.params.id));
-    res.json(result);
+    await postService.deletePost(Number(req.params.id));
+    res.json({message: "Post deleted"});
   } catch (error) {
     next(error);
   };
