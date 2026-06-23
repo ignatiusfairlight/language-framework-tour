@@ -30,7 +30,7 @@ Here is the list of frameworks I'm going to try out in this tour.
 | Ruby       | Ruby on Rails |   ❌   |
 | Python     | FastAPI       |   ✅   |   
 | Python     | Django        |   ✅   |
-| Typescript | ExpressJS     |   ❌   |
+| Typescript | ExpressJS     |   ✅   |
 | Typescript | HonoJS        |   ❌   |
 
 Also, I haven't made the frontend part of this project yet. As of now, the API made in this project are tested using Postman. I'm bad when it comes to anything involving creative thinking so until I come up with a blog site design that I'm happy with, I will continue testing endpoints in the project using Postman.
