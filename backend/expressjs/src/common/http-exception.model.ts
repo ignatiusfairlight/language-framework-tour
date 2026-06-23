@@ -1,7 +1,10 @@
-import { NextFunction, Request, Response } from "express";
+class HttpException extends Error {
+  errorCode: number;
 
-export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
-  const status = err.status || 500;
-  res.status(status).json({ message: err.message });
-};
+  constructor(errorCode: number, public readonly message: string) {
+    super(message);
+    this.errorCode = errorCode;
+  }
+}
 
+export default HttpException;
