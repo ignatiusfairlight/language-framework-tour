@@ -14,7 +14,7 @@ const createPost = async (data: CreatePost) => {
 };
 
 const editPost = async (id: number, data: EditPost) => {
-  return { "message": "Fine, thank you!" };
+  return await db.one('UPDATE posts SET title = $1, content = $2, updated = NOW() WHERE id = $3 RETURNING *', [data.title, data.content, id]);
 };
 
 const deletePost = async (id: number) => {
