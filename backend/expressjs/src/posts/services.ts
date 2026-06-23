@@ -15,6 +15,10 @@ const getById = async (id: number) => {
 };
 
 const createPost = async (data: CreatePost) => {
+  if (!data.title || !data.content) {
+    throw new HttpException(422, "Please fill the fields")
+  }
+  
   return await db.one('INSERT INTO posts (title, content) VALUES ($1, $2) RETURNING *', [data.title, data.content]);
 };
 
@@ -25,6 +29,9 @@ const editPost = async (id: number, data: EditPost) => {
 
   if (data.title !== undefined) { fields.push(`title = $${i++}`); values.push(data.title); }
   if (data.content !== undefined) { fields.push(`content = $${i++}`); values.push(data.content); }
+  if (fields.length === 0) {
+    throw new HttpException(422, "No fields to update")
+  }
 
   values.push(id)
 
